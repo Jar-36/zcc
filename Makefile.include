@@ -1,0 +1,12 @@
+CC=gcc
+AS=nasm
+LD=gcc
+CCFLAGS=-g -c -Wall -o $@
+LDFLAGS=-g -o $@ $^
+AR=ar
+ARFLAGS=-cr $@ $^
+%.o:%.c
+	$(CC) $(CCFLAGS) $^
+
+
+
