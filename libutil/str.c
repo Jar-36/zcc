@@ -24,8 +24,3 @@ char checkLegalToken(char *token){
     yes:
     return 1;
 }
-
-
-char getTypeToken(char *token){
-
-}

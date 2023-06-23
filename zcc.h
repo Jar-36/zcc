@@ -7,18 +7,18 @@
 extern FILE *srcfp;
 extern FILE *asmfp;
 
-struct global_var_t{
+typedef struct GLOBAL_VAR{
     char type_size;
     char flags;
     char *name;
-    struct global_var_t* next;
-}GLOBAL_VAR;
+    struct GLOBAL_VAR* next;
+}global_var;
 
-struct type_list_t{
+typedef struct TYPE_LIST{
     char type_size;
     char *typestr;
-    struct type_list_t* next;
-}TYPE_LIST;
+    struct TYPE_LIST* next;
+}type_list;
 
 enum type{
     BYTE=1, WORD, DWORD

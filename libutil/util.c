@@ -1,9 +1,10 @@
 #include "util.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include"../zcc.h"
 
-struct TYPE_LIST* head = NULL;
+type_list * head = NULL;
 
 void srcRollback(){
     rewind(srcfp);
@@ -39,12 +40,43 @@ char *readASen(_Bool rollBack){
 }
 
 void addType(char type_size, char *name){
-    struct TYPE_LIST* structure = malloc(sizeof(TYPE_LIST));
+    type_list * structure = (type_list*) malloc(sizeof(type_list));
+    structure->next = NULL;
+    structure->type_size = type_size;
+    structure->typestr = name;
     if(head==NULL){
+        head = structure;
+        return;
+    }
+    type_list *index = head;
+    while(1){
+        if(index->next==NULL){
+            index->next=structure;
+            return;
+        }
+        index=index->next;
+    }
+}
 
+char getTypeSize(char *name){
+    if(head==NULL){
+        return 0;
+    }
+    type_list *index = head;
+    while(1){
+        if(strcmp(name, index->typestr)==0){
+            return index->type_size;
+        }
+        index=index->next;
+        if(index==NULL){
+            return 0;
+        }
     }
 }
 
 void initBaseType(){
-
+    addType(BYTE, "char");
+    addType(WORD, "short");
+    addType(DWORD, "int");
+    addType(DWORD, "long");
 }

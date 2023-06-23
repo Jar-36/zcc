@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="all" type="CLionNativeAppRunConfigurationType" PROGRAM_PARAMS="-s -B" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$ContentRoot$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="zcc" TARGET_NAME="all" CONFIG_NAME="all" version="1" RUN_PATH="/usr/bin/make">
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,7 +1,7 @@
 OBJS=zcc.o ctree.o asm.o
 
 all:
-	gcc zcc.c
+	#gcc zcc.c
 	#for CLION CONFIGURE
 	make zcc.out
 	echo ----------TEST RESULT----------
