@@ -1,7 +1,7 @@
 CC=gcc
 AS=nasm
 LD=gcc
-CCFLAGS=-g -c -Wall -o $@
+CCFLAGS=-g -c -Wall -std=c99 -o $@
 LDFLAGS=-g -o $@ $^
 AR=ar
 ARFLAGS=-cr $@ $^

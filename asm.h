@@ -3,6 +3,7 @@
 
 
 void asmStartDataSegment();
+void asmAddData(char size, char *label, long data);
 
 
 #endif

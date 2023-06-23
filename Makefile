@@ -4,7 +4,6 @@ all:
 	#gcc zcc.c
 	#for CLION CONFIGURE
 	make zcc.out
-	echo ----------TEST RESULT----------
 	./zcc.out
 
 zcc.out: $(OBJS)

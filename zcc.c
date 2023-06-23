@@ -5,33 +5,14 @@
 FILE *srcfp;
 FILE *asmfp;
 
-void test();
-
 int main(){
     srcfp = fopen("test.c", "r");
     asmfp = fopen("test.asm", "w");
     initBaseType();
-//    char t;
-//    while (1){
-//        t= fgetc(srcfp);
-//        printf("%x", t);
-//        if(t==EOF){
-//            break;
-//        }
-//    }
-//    printf("%s", readASen(0));
-//    printf("%s", readASen(0));
-//    printf("%s", readASen(0));
-//    printf("%s", readASen(0));
-//    printf("%s", readASen(0));
-//    printf("%i", checkLegalToken("hell_90o"));
-//    asmStartDataSegment();
+    asmStartDataSegment();
+    asmAddData(DWORD, "var1", 0);
     fclose(srcfp);
     fclose(asmfp);
-//    printf("%lu\n", sizeof(short));
-//    printf("%lu\n", sizeof(int));
-//    printf("%lu\n", sizeof(long));
-//    printf("%lu\n", sizeof(float));
-//    printf("%lu\n", sizeof(double));
+    loggerf(INFO, "compile complete with no error(s)");
     return 0;
 }

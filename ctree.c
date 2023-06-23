@@ -2,6 +2,4 @@
 #include <stdlib.h>
 #include <string.h>
 
-char checkSentType(char *sent){
-    return 0;
-}
+char *tokenSplit(char *sent, int *retsize);

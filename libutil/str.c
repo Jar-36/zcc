@@ -3,6 +3,7 @@
 
 
 char checkLegalToken(char *token){
+    if(getTypeSize(token)!=0) goto no;
     char c;
     int index=0;
     while(1){

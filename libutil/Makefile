@@ -1,4 +1,4 @@
-OBJS=util.o str.o
+OBJS=util.o str.o logger.o
 
 default:
 	make libutil.a
