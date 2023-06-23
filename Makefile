@@ -1,8 +1,8 @@
-OBJS=zcc.o global.o scan.o
+OBJS=zcc.o ctree.o asm.o
 
 all:
-	#gcc zcc.c
-	# for CLION CONFIGURE
+	gcc zcc.c
+	#for CLION CONFIGURE
 	make zcc.out
 	echo ----------TEST RESULT----------
 	./zcc.out

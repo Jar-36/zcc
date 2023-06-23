@@ -23,5 +23,9 @@ int main(){
 //    printf("%s", readASen(0));
 //    printf("%s", readASen(0));
 //    printf("%s", readASen(0));
+//    printf("%i", checkLegalToken("hell_90o"));
+//    asmStartDataSegment();
+    fclose(srcfp);
+    fclose(asmfp);
     return 0;
 }

@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include"../zcc.h"
 
+struct TYPE_LIST* head = NULL;
+
 void srcRollback(){
     rewind(srcfp);
 }
@@ -34,4 +36,15 @@ char *readASen(_Bool rollBack){
         buffer[0] = 0;
     }
     return buffer;
+}
+
+void addType(char type_size, char *name){
+    struct TYPE_LIST* structure = malloc(sizeof(TYPE_LIST));
+    if(head==NULL){
+
+    }
+}
+
+void initBaseType(){
+
 }
