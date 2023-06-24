@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "zcc.h"
+#include "asm.h"
 
 
 FILE *srcfp;
@@ -11,7 +12,6 @@ int main(){
     asmfp = fopen("test.asm", "w");
     initBaseType();
     asmStartDataSegment();
-    asmAddData(DWORD, "var1", 0);
     fclose(srcfp);
     fclose(asmfp);
     loggerf(INFO, "compile complete with no error(s)");

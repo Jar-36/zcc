@@ -38,4 +38,6 @@ void asmAddData(char size, char *label, long data){
     char *dst = (char*)malloc(1024);
     sprintf(dst, "%s: %s %s\n", label, len, buffer);
     fputs(dst, asmfp);
+    free(buffer);
+    free(dst);
 }

@@ -22,7 +22,7 @@ void asmSeek(int type, long offset){
     fseek(asmfp, offset, type);
 }
 
-char *readASen(_Bool rollBack){
+char *readASen(){
     int bufferCount = 0;
     char t;
     char *buffer = (char*) malloc(1024*sizeof(char ));

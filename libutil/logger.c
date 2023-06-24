@@ -1,26 +1,29 @@
 #include "../zcc.h"
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
 
 void loggerf(int level, char *str){
-    char *type=(char *)malloc(16);
+    char *type="     ";
     switch (level) {
         case 1:
-            type="DEBUG";
+            type = "DEBUG";
             break;
         case 2:
-            type="INFO";
+            type = "INFO";
             break;
         case 3:
-            type="WARN";
+            type = "WARN";
             break;
         case 4:
-            type="ERROR";
+            type = "ERROR";
             printf("[%li %s] %s\n", clock(), type, str);
+            remove("test.asm");
             exit(-1);
         case 5:
-            type="FATAL";
+            type = "FATAL";
             printf("[%li %s] %s\n", clock(), type, str);
+            remove("test.asm");
             exit(-1);
     }
     printf("[%li %s] %s\n", clock(), type, str);

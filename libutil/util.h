@@ -5,13 +5,13 @@ void srcRollback();
 void asmRollback();
 void srcSeek(int type, long offset);
 void asmSeek(int type, long offset);
-char *readASen(_Bool rollBack);
+char *readASen();
 void addType(char type_size, char *name);
 void initBaseType();
 char getTypeSize(char *name);
 void loggerf(int level, char *str);
 char checkKeyWord(char *token);
-
+char checkLegalToken(char *token);
 
 #define HEAD 0
 #define CURR 1
