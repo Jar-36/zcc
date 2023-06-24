@@ -10,6 +10,7 @@ void addType(char type_size, char *name);
 void initBaseType();
 char getTypeSize(char *name);
 void loggerf(int level, char *str);
+char checkKeyWord(char *token);
 
 
 #define HEAD 0
