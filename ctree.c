@@ -21,6 +21,7 @@ global_var *getGlobalVar(char *sent){
        if(c==' '){
            sent[index] = 0;
            printf("reach target %s\n", sent+headIndex);
+
            size = getTypeSize(sent+headIndex);
            if(size!=0){
                printf("%i is type size\n", size);

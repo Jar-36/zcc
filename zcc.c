@@ -12,8 +12,8 @@ int main(int argc, char** argv){
     asmfp = fopen("test.asm", "w");
     initBaseType();
     asmStartDataSegment();
-    char sent[] = "int i;";
-    getGlobalVar(sent);
+//    char sent[] = "int i;";
+//    getGlobalVar(sent);
     fclose(srcfp);
     fclose(asmfp);
     loggerf(INFO, "compile complete with no error(s)");
