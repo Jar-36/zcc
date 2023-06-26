@@ -31,7 +31,10 @@ char *readASen(){
         if(t==0x0a||t=='\\') continue;
         buffer[bufferCount] = t;
         bufferCount++;
-        if(t==';'||t==EOF) break;
+        if(t==';'||t==EOF||t=='{') break;
+    }
+    if(bufferCount<1){
+        return NULL;
     }
     if(bufferCount<=1){
         buffer[0] = 0;

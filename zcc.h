@@ -10,7 +10,7 @@ typedef struct GLOBAL_VAR{
     char type_size;
     char flags;
     char *name;
-    long value;
+    struct GLOBAL_VAR* next;
 }global_var;
 
 // global var flags
