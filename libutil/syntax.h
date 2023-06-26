@@ -8,4 +8,7 @@ char getTypeSize(char *name);
 char checkKeyWord(char *token);
 char checkLegalToken(char *token);
 
+#define ILLEGAL 0
+#define LEGAL 1
+
 #endif

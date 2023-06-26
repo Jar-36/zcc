@@ -8,6 +8,7 @@ void asmRollback();
 void srcSeek(int type, long offset);
 void asmSeek(int type, long offset);
 unsigned int hash(char *str);
+void itoa(int n, char s[]);
 void loggerf(int level, char *str);
 
 
@@ -19,5 +20,7 @@ void loggerf(int level, char *str);
 #define WARN 3
 #define ERROR 4
 #define FATAL 5
+
+
 
 #endif

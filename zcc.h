@@ -3,24 +3,25 @@
 
 #include <stdio.h>
 #include "libutil/util.h"
+
 extern FILE *srcfp;
 extern FILE *asmfp;
 
 typedef struct GLOBAL_VAR{
     char type_size;
     char flags;
-    char *name;
+    int id;
     struct GLOBAL_VAR* next;
 }global_var;
 
 // global var flags
 //   high<<<<<bit                                                           bit>>>>>low
 //    b7     |     b6   |    b5    |     b4   |     b3   |   b2   |   b1   |   b0  |
-//  reserved | reserved | reserved | register | volatile | extern | static | const |
+//  reserved | reserved | reserved | reserved | reserved | extern | static | const |
 
 typedef struct TYPE_LIST{
     char type_size;
-    char *typestr;
+    int id;
     struct TYPE_LIST* next;
 }type_list;
 

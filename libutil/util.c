@@ -58,43 +58,31 @@ void loggerf(int level, char *str){
     printf("[%li %s] %s\n", clock(), type, str);
 }
 
-char *keywords[] = {"break", "case", "const", "continue", "else", "extern",
-                    "for", "goto", "if", "register", "return", "sizeof", "static",
-                    "struct", "switch", "typedef", "union", "volatile", "while"};
 
-
-char checkLegalToken(char *token){
-    if(getTypeSize(token)!=0) goto no;
-    if(checkKeyWord(token)==1) goto no;
+void reverse(char s[]){
+    int i, j;
     char c;
-    int index=0;
-    while(1){
-        c=token[index];
-        if(c==';'||c=='('||c==' '||c==0)goto yes;
-        if(c=='_') {
-            if(index==0) goto no;
-            else goto con;
-        }
-        if(c<'0') goto no;
-        if(c>'9'&&c<'A') goto no;
-        if(c>'Z'&&c<'a') goto no;
-        if(c>'z') goto no;
-        con:
-        index++;
+
+    for (i = 0, j = strlen(s)-1; i<j; i++, j--) {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
     }
-    no:
-    return 0;
-    yes:
-    return 1;
 }
 
-char checkKeyWord(char *token){
-    for(int i=0;i<19;i++){
-        if(strcmp(token, keywords[i])==0) goto yes;
-    }
-    goto no;
-    no:
-    return 0;
-    yes:
-    return 1;
+
+void itoa(int n, char s[]){
+    int i, sign;
+
+    if ((sign = n) < 0)
+        n = -n;
+    i = 0;
+    do {
+        s[i++] = n % 10 + '0';
+    } while ((n /= 10) > 0);
+    if (sign < 0)
+        s[i++] = '-';
+    s[i] = '\0';
+    reverse(s);
 }
+
