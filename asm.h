@@ -5,8 +5,8 @@
 #include "zcc.h"
 
 void asmStartDataSegment();
-void asmAddData(char size, char *label, long data);
-global_var *getGlobalVar(char *sent);
-
+void asmStartCodeSegment();
+void asmStartRodataSegment();
+void asmAddData(global_var* var, long data);
 
 #endif

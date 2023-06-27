@@ -1,8 +1,6 @@
-OBJS=zcc.o ctree.o asm.o
+OBJS=zcc.o ctree.o asm.o global.o
 
 all:
-	#gcc zcc.c
-	#for CLION CONFIGURE
 	make zcc.out
 	./zcc.out
 

@@ -7,7 +7,7 @@ void srcRollback();
 void asmRollback();
 void srcSeek(int type, long offset);
 void asmSeek(int type, long offset);
-unsigned int hash(char *str);
+int hash(char *str);
 void itoa(int n, char s[]);
 void loggerf(int level, char *str);
 

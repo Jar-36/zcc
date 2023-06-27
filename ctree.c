@@ -1,4 +1,5 @@
 #include "zcc.h"
+#include "libutil/util.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -6,8 +7,7 @@
 #define PREFIX_STATIC 2
 #define PREFIX_EXTERN 3
 
-global_var *getGlobalVar(char *sent) {
-    char hasPrefix = 0;
+global_var *getGlobalVar(char *sent){
     char hasType = 0;
     char hasName = 0;
     int headIndex = 0;

@@ -2,7 +2,6 @@
 #define ZCC_ZCC_H
 
 #include <stdio.h>
-#include "libutil/util.h"
 
 extern FILE *srcfp;
 extern FILE *asmfp;

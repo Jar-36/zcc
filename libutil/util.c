@@ -24,8 +24,8 @@ void asmSeek(int type, long offset){
 
 
 
-unsigned int hash(char *str){
-    unsigned int hash = 0;
+int hash(char *str){
+    int hash = 0;
     while(*str){
         hash = (*str++) + (hash<<6) + (hash<<16) - hash;
     }
@@ -59,7 +59,7 @@ void loggerf(int level, char *str){
 }
 
 
-void reverse(char s[]){
+static void reverse(char s[]){
     int i, j;
     char c;
 

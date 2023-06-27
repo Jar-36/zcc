@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include"../zcc.h"
+#include "util.h"
 type_list * head = NULL;
 
 char *readASen(){
