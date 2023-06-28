@@ -4,5 +4,6 @@
 #include "zcc.h"
 
 global_var *constructGlobalVar(char *sent);
+function *constructGlobalFunction(char *sent);
 
 #endif

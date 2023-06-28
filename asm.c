@@ -41,6 +41,13 @@ void asmExternLabel(char *label){
     free(dst);
 }
 
+void asmAddFunction(char *label){
+    char *dst = (char*)malloc(1024);
+    sprintf(dst,"%s:\n", label);
+    fputs(dst, asmfp);
+    free(dst);
+}
+
 void asmAddData(global_var* var, long data){
     int ro = 0;
     if((asmStatusFlags&(0x1<<3))!=(0x1<<3)){

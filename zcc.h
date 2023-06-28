@@ -23,8 +23,11 @@ typedef struct FUNCTION{
     char return_type;
     int id;
     char *name;
+    char isStatic;
+    char isExternal;
     int param_count;
-    param param_list[];
+    int char_index;
+    param **param_list;
 }function;
 
 // global var flags

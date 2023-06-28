@@ -7,6 +7,93 @@
 #define PREFIX_STATIC 2
 #define PREFIX_EXTERN 3
 
+param** processParam(char *param){
+    return NULL;
+}
+
+function *constructGlobalFunction(char *sent){
+    char hasRet = 0;
+    char hasName = 0;
+    char hasParam = 0;
+    char hasPrefix = 0;
+    int index = 0;
+    int headIndex = 0;
+    int size = 0;
+    int prefix = 0;
+    int getIntoParam = 0;
+    int paramSize;
+    function *func = (function*)malloc(sizeof(function));
+    func->char_index = char_index_before_read;
+    func->id = 0;
+    func->isStatic = 0;
+    func->isExternal = 0;
+    func->name = (char*)malloc(1024);
+    func->param_count = 0;
+    func->param_list = (param**)malloc(sizeof(param*));
+    func->return_type = 0;
+    char c;
+    while (1){
+        c= sent[index];
+        if(c==' '||c=='{'||c==';'||c=='('){
+            sent[index] = 0;
+
+
+            if(checkLegalToken(sent+headIndex)==LEGAL){
+                if(hasName==1) loggerf(ERROR, "double define of function name");
+                hasName = 1;
+                func->id = hash(sent+headIndex);
+                strcpy(func->name, sent+headIndex);
+            }
+            if(c=='('){
+                processParam(sent+index);
+                hasParam = 1;
+                break;
+            }
+
+            size = getTypeSize(sent+headIndex);
+            if(size!=0){
+                if(hasRet==1) loggerf(ERROR, "double define of function return type");
+                hasRet = 1;
+                func->return_type = size;
+            }
+
+            prefix = checkKeyWord(sent+headIndex);
+            if(prefix!=0){
+                if(hasPrefix==1) loggerf(ERROR, "double define of function prefix");
+                if(prefix!=13) loggerf(ERROR, "illegal prefix of function");
+                hasPrefix = 1;
+                func->isStatic = 1;
+            }
+
+
+
+            if(c==';'){
+                func->isExternal = 0;
+                break;
+            }
+            if(c=='{'){
+                int r = 1;
+                int tmp;
+                while(1){
+                    if(r==0){
+                        fgetc(srcfp);
+                        break;
+                    }
+                    tmp= fgetc(srcfp);
+                    if(tmp=='{') r++;
+                    if(tmp=='}') r--;
+                }
+                break;
+            }
+            sent[index] = c;
+            headIndex = index + 1;
+        }
+        index++;
+    }
+    if(hasName==0||hasRet==0||hasParam==0) loggerf(ERROR, "illegal function define");
+    return func;
+}
+
 global_var *constructGlobalVar(char *sent){
     char hasType = 0;
     char hasName = 0;

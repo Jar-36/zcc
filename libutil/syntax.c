@@ -5,7 +5,14 @@
 #include "util.h"
 type_list * headType = NULL;
 
+int char_index_before_read = 0;
+
 char *readASen(){
+    fpos_t *pos = (fpos_t*)malloc(sizeof(fpos_t));
+    fgetpos(srcfp, pos);
+    char_index_before_read = pos->__pos;
+    printf("%i\n", char_index_before_read);
+    free(pos);
     int bufferCount = 0;
     int t = 0;
     char *buffer = (char*) malloc(1024*sizeof(char ));
@@ -13,7 +20,7 @@ char *readASen(){
         t = fgetc(srcfp);
         if(t==0x0a||t=='\\') continue;
         buffer[bufferCount] = t;
-        if(t==';'||t==EOF||t=='{'||t==0) break;
+        if(t==';'||t==EOF||t=='{') break;
         bufferCount++;
     }
     if(bufferCount<1){
@@ -65,6 +72,7 @@ void initBaseType(){
     addType(WORD, "short");
     addType(DWORD, "int");
     addType(DWORD, "long");
+    addType(-1, "void");
 }
 
 char *keywords[] = {"break", "case", "const", "continue", "else", "extern",
@@ -79,7 +87,7 @@ char checkLegalToken(char *token){
     int index=0;
     while(1){
         c=token[index];
-        if(c==';'||c==' '||c==0)goto yes;
+        if(c==';'||c==' '||c==0||c=='(')goto yes;
         if(c=='_') {
             if(index==0) goto no;
             else goto con;
