@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include"../zcc.h"
+#include <crypt.h>
 
 
 

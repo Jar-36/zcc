@@ -19,6 +19,7 @@ global_var *getGlobalVar(char *sent){
     var->id = 0;
     var->next = NULL;
     var->type_size = 0;
+    var->name = (char*)malloc(1024);
     char c;
     while (1) {
         c = sent[index];
@@ -29,6 +30,7 @@ global_var *getGlobalVar(char *sent){
                 if (hasName == 1) loggerf(ERROR, "double define of name type");
                 hasName = 1;
                 var->id = hash(sent + headIndex);
+                strcpy(var->name, sent+headIndex);
             }
 
             keyword = checkKeyWord(sent + headIndex);

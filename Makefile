@@ -2,7 +2,7 @@ OBJS=zcc.o ctree.o asm.o global.o
 
 all:
 	make zcc.out
-	./zcc.out
+	./zcc.out test.c test.asm
 
 zcc.out: $(OBJS)
 	make -C libutil
@@ -14,5 +14,6 @@ clean:
 	-rm -fr *.out
 	-rm -fr *.a
 	-rm -fr *.so
+	-rm -fr *.asm
 
 include Makefile.include

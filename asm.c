@@ -23,13 +23,40 @@ void asmStartCodeSegment(){
 
 void asmStartRodataSegment(){
     if((asmStatusFlags&(0x1<<1))==(0x1<<1)) return;
-    fputs("SECTION .redata\n", asmfp);
+    fputs("SECTION .rodata\n", asmfp);
     asmStatusFlags|=(0x1<<1);
 }
 
+void asmGlobalLabel(char *label){
+    char *dst = (char*)malloc(1024);
+    sprintf(dst, "GLOBAL %s\n", label);
+    fputs(dst, asmfp);
+    free(dst);
+}
+
+void asmExternLabel(char *label){
+    char *dst = (char*)malloc(1024);
+    sprintf(dst, "EXTERN %s\n", label);
+    fputs(dst, asmfp);
+    free(dst);
+}
+
 void asmAddData(global_var* var, long data){
+    int ro = 0;
     if((asmStatusFlags&(0x1<<3))!=(0x1<<3)){
         if((asmStatusFlags&(0x1<<1))!=(0x1<<1)) loggerf(ERROR, "internal error");
+    }
+    if((var->flags&(0x1<<2))==(0x1<<2)){
+        asmExternLabel(var->name);
+        goto ext;
+    }
+    if((var->flags&(0x1))==0x1) {
+        asmStartRodataSegment();
+        ro = 1;
+        asmStatusFlags&=(0x1<<1);
+    }
+    if((var->flags&(0x1<<1))!=(0x1<<1)){
+        asmGlobalLabel(var->name);
     }
     char *len="db";
     char *buffer = (char*)malloc(16);
@@ -50,8 +77,10 @@ void asmAddData(global_var* var, long data){
             break;
     }
     char *dst = (char*)malloc(1024);
-    sprintf(dst, "G%i: %s %s\n", var->id, len, buffer);
+    sprintf(dst, "%s: %s %s\n", var->name, len, buffer);
     fputs(dst, asmfp);
     free(buffer);
     free(dst);
+    ext:
+    if(ro==1) asmStartDataSegment();
 }
