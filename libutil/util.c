@@ -47,12 +47,10 @@ void loggerf(int level, char *str){
         case 4:
             type = "ERROR";
             printf("[%li %s] %s\n", clock(), type, str);
-            remove("test.asm");
             exit(-1);
         case 5:
             type = "FATAL";
             printf("[%li %s] %s\n", clock(), type, str);
-            remove("test.asm");
             exit(-1);
     }
     printf("[%li %s] %s\n", clock(), type, str);

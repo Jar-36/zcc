@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "libutil/util.h"
+#include "global.h"
 
 
 FILE *srcfp;
@@ -10,6 +11,7 @@ int main(){
     srcfp = fopen("test.c", "r");
     asmfp = fopen("test.asm", "w");
     initBaseType();
+    readGlobalSymbol();
     fclose(srcfp);
     fclose(asmfp);
     loggerf(INFO, "compile complete with no error(s)");

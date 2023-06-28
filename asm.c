@@ -50,11 +50,8 @@ void asmAddData(global_var* var, long data){
             break;
     }
     char *dst = (char*)malloc(1024);
-    char *buf = (char*)malloc(64);
-    itoa(data, buf);
-    sprintf(dst, "%s: %s %s\n", buf, len, buffer);
+    sprintf(dst, "G%i: %s %s\n", var->id, len, buffer);
     fputs(dst, asmfp);
     free(buffer);
     free(dst);
-    free(buf);
 }

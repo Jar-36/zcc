@@ -7,14 +7,14 @@ type_list * head = NULL;
 
 char *readASen(){
     int bufferCount = 0;
-    char t;
+    int t = 0;
     char *buffer = (char*) malloc(1024*sizeof(char ));
     while (1){
         t = fgetc(srcfp);
         if(t==0x0a||t=='\\') continue;
         buffer[bufferCount] = t;
+        if(t==';'||t==EOF||t=='{'||t==0) break;
         bufferCount++;
-        if(t==';'||t==EOF||t=='{') break;
     }
     if(bufferCount<1){
         return NULL;

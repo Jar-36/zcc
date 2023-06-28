@@ -4,6 +4,8 @@
 #include "libutil/util.h"
 
 void readGlobalSymbol(){
+    asmStartDataSegment();
+    srcRollback();
     char *buf = NULL;
     global_var *var = NULL;
     while(1){
@@ -12,6 +14,7 @@ void readGlobalSymbol(){
             break;
         }
         var = getGlobalVar(buf);
+        if(var==NULL) continue;
         asmAddData(var, 0);
     }
 }
