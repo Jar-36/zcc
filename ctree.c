@@ -7,7 +7,7 @@
 #define PREFIX_STATIC 2
 #define PREFIX_EXTERN 3
 
-global_var *getGlobalVar(char *sent){
+global_var *constructGlobalVar(char *sent){
     char hasType = 0;
     char hasName = 0;
     int headIndex = 0;
@@ -64,6 +64,7 @@ global_var *getGlobalVar(char *sent){
 
         }
         index++;
+        if(sent[index]=='(') return NULL; // maybe a function
     }
     if (hasName == 0 || hasType == 0) loggerf(ERROR, "illegal def of var");
     return var;

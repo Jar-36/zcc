@@ -14,6 +14,19 @@ typedef struct GLOBAL_VAR{
     struct GLOBAL_VAR* next;
 }global_var;
 
+typedef struct PARAM{
+    char type;
+    int id;
+}param;
+
+typedef struct FUNCTION{
+    char return_type;
+    int id;
+    char *name;
+    int param_count;
+    param param_list[];
+}function;
+
 // global var flags
 //   high<<<<<bit                                                           bit>>>>>low
 //    b7     |     b6   |    b5    |     b4   |     b3   |   b2   |   b1   |   b0  |

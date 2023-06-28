@@ -5,6 +5,6 @@
 #ifndef ZCC_GLOBAL_H
 #define ZCC_GLOBAL_H
 
-void readGlobalSymbol();
+void readGlobalVar();
 
 #endif //ZCC_GLOBAL_H

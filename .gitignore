@@ -9,7 +9,6 @@ cmake-build-debug
 *.ko
 *.obj
 *.elf
-.idea/
 
 # Linker output
 *.ilk

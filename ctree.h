@@ -3,6 +3,6 @@
 
 #include "zcc.h"
 
-global_var *getGlobalVar(char *sent);
+global_var *constructGlobalVar(char *sent);
 
 #endif

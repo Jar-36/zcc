@@ -3,7 +3,7 @@
 #include <string.h>
 #include"../zcc.h"
 #include "util.h"
-type_list * head = NULL;
+type_list * headType = NULL;
 
 char *readASen(){
     int bufferCount = 0;
@@ -30,11 +30,11 @@ void addType(char type_size, char *name){
     structure->next = NULL;
     structure->type_size = type_size;
     structure->id = hash(name);
-    if(head==NULL){
-        head = structure;
+    if(headType==NULL){
+        headType = structure;
         return;
     }
-    type_list *index = head;
+    type_list *index = headType;
     while(1){
         if(index->next==NULL){
             index->next=structure;
@@ -45,10 +45,10 @@ void addType(char type_size, char *name){
 }
 
 char getTypeSize(char *name){
-    if(head==NULL){
+    if(headType==NULL){
         return 0;
     }
-    type_list *index = head;
+    type_list *index = headType;
     while(1){
         if(hash(name)== index->id){
             return index->type_size;
