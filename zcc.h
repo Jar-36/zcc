@@ -17,6 +17,7 @@ typedef struct GLOBAL_VAR{
 typedef struct PARAM{
     char type;
     int id;
+    struct PARAM* next;
 }param;
 
 typedef struct FUNCTION{
@@ -27,7 +28,7 @@ typedef struct FUNCTION{
     char isExternal;
     int param_count;
     int char_index;
-    param **param_list;
+    param *param_list_head;
 }function;
 
 // global var flags

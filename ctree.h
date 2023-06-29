@@ -5,5 +5,6 @@
 
 global_var *constructGlobalVar(char *sent);
 function *constructGlobalFunction(char *sent);
+void processParam(char *p, function *func);
 
 #endif
