@@ -8,6 +8,8 @@ void asmStartDataSegment();
 void asmStartCodeSegment();
 void asmStartRodataSegment();
 void asmAddData(global_var* var, long data);
-void asmGlobalLabel(int id);
+void asmGlobalLabel(char *label);
+void asmExternLabel(char *label);
+void asmAddFunction(char *label);
 
 #endif

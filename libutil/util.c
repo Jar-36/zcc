@@ -3,7 +3,8 @@
 #include <string.h>
 #include <time.h>
 #include"../zcc.h"
-#include <crypt.h>
+
+char errFlag = 0;
 
 
 
@@ -44,11 +45,13 @@ void loggerf(int level, char *str){
             break;
         case 3:
             type = "WARN";
+            errFlag = 1;
             break;
         case 4:
             type = "ERROR";
             printf("[%li %s] %s\n", clock(), type, str);
-            exit(-1);
+            errFlag = 1;
+            break;
         case 5:
             type = "FATAL";
             printf("[%li %s] %s\n", clock(), type, str);

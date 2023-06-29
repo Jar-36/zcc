@@ -19,10 +19,10 @@ int main(int argc, char** argv){
     srcfp = fopen("test.c", "r");
     asmfp = fopen("test.asm", "w");
     initBaseType();
-//    readGlobalVar();
 
-    char code[] = "int func(int a,int b);";
-    function* func = constructGlobalFunction(code);
+    readGlobalVar();
+    readGlobalFunction();
+
     // printf("%i %i %i %s %i %i\n", func->param_count, func->id, func->isExternal, func->name, func->isStatic, func->return_type);
     // printf("%x %x %i %i %i %i %x\n", func->param_list_head, func->param_list_head->next, func->param_list_head->id, func->param_list_head->type, func->param_list_head->next->id, func->param_list_head->next->type, func->param_list_head->next->next);
     fclose(srcfp);

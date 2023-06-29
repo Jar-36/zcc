@@ -11,6 +11,8 @@ int hash(char *str);
 void itoa(int n, char s[]);
 void loggerf(int level, char *str);
 
+extern char errFlag;
+
 
 #define HEAD 0
 #define CURR 1

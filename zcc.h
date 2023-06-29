@@ -29,6 +29,7 @@ typedef struct FUNCTION{
     int param_count;
     int char_index;
     param *param_list_head;
+    struct FUNCTION* next;
 }function;
 
 // global var flags

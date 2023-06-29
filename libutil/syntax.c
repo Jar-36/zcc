@@ -11,16 +11,30 @@ char *readASen(){
     fpos_t *pos = (fpos_t*)malloc(sizeof(fpos_t));
     fgetpos(srcfp, pos);
     char_index_before_read = pos->__pos;
-    printf("%i\n", char_index_before_read);
     free(pos);
     int bufferCount = 0;
     int t = 0;
     char *buffer = (char*) malloc(1024*sizeof(char ));
     while (1){
         t = fgetc(srcfp);
+        if (t == '{') {
+            buffer[bufferCount] = t;
+            int r = 1;
+            int tmp;
+            while (1) {
+                if (r == 0) {
+                    fgetc(srcfp);
+                    break;
+                }
+                tmp = fgetc(srcfp);
+                if (tmp == '{') r++;
+                if (tmp == '}') r--;
+            }
+            break;
+        }
         if(t==0x0a||t=='\\') continue;
         buffer[bufferCount] = t;
-        if(t==';'||t==EOF||t=='{') break;
+        if(t==';'||t==EOF) break;
         bufferCount++;
     }
     if(bufferCount<1){
