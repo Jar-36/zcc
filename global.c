@@ -2,6 +2,7 @@
 #include "asm.h"
 #include "ctree.h"
 #include "libutil/util.h"
+#include "function.h"
 
 global_var *headGlobalVar = NULL;
 function *headFunction = NULL;
@@ -21,6 +22,7 @@ void readGlobalFunction(){
         if(func==NULL) continue;
         if(func->isExternal==1) asmExternLabel(func->name);
         if(func->isStatic==0) asmGlobalLabel(func->name);
+        compileFunction(func);
         if(headFunction==NULL){
             headFunction = func;
             index = headFunction;

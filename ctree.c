@@ -17,6 +17,17 @@ void processParam(char *p, function *func) {
     param *pIndex = NULL;
     while (1) {
         c = p[index];
+
+        if(c=='*'){
+            if(status==1){
+                pIndex->PTR = 1;
+                if(p[index+1]=='*') {
+                    pIndex->PTR = 2;
+                    index++;
+                }
+            }else loggerf(ERROR, "illegal pointer define");
+        }
+
         if (c == ')' || c == ' ' || c == ',') {
             p[index] = 0;
             size = getTypeSize(p + headIndex);
@@ -58,6 +69,7 @@ function *constructGlobalFunction(char *sent) {
     int headIndex = 0;
     int size = 0;
     int prefix = 0;
+    int isPTR = 0;
     function *func = (function *) malloc(sizeof(function));
     func->char_index = char_index_before_read;
     func->id = 0;
@@ -70,6 +82,17 @@ function *constructGlobalFunction(char *sent) {
     char c;
     while (1) {
         c = sent[index];
+        if(c=='*'){
+            if(isPTR == 1) loggerf(ERROR, "illegal pointer define");
+            if(hasRet==1&&hasName==0){
+                func->retPTR=1;
+                isPTR = 1;
+                if(sent[index+1]=='*') {
+                    func->retPTR=2;
+                    index++;
+                }
+            }else loggerf(ERROR, "illegal pointer define");
+        }
         if (c == ' ' || c == '{' || c == ';' || c == '(') {
             sent[index] = 0;
 
@@ -125,7 +148,7 @@ function *constructGlobalFunction(char *sent) {
         }
         index++;
     }
-    if (hasName == 0 || hasRet == 0 || hasParam == 0) loggerf(ERROR, "illegal function define");
+    if (hasName == 0 || hasRet == 0 || hasParam == 0) errFlag = 1;
     if(errFlag == 1) return NULL;
     return func;
 }
@@ -139,6 +162,7 @@ global_var *constructGlobalVar(char *sent) {
     int index = 0;
     int size = 0;
     int keyword = 0;
+    int isPTR = 0;
     global_var *var = (global_var *) malloc(sizeof(global_var));
     var->flags = 0;
     var->id = 0;
@@ -148,6 +172,17 @@ global_var *constructGlobalVar(char *sent) {
     char c;
     while (1) {
         c = sent[index];
+        if(c=='*'){
+            if(isPTR == 1) loggerf(ERROR, "illegal pointer define");
+            if(hasType==1&&hasName==0){
+                var->flags&=(0x1<<3);
+                isPTR = 1;
+                if(sent[index+1]=='*') {
+                    var->flags&=(0x1<<4);
+                    index++;
+                }
+            }else loggerf(ERROR, "illegal pointer define");
+        }
         if (c == ' ' || c == ';') {
             sent[index] = 0;
 

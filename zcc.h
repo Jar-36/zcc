@@ -14,14 +14,22 @@ typedef struct GLOBAL_VAR{
     struct GLOBAL_VAR* next;
 }global_var;
 
+typedef struct FIELD_VAR{
+    struct GLOBAL_VAR* core;
+    int esp;
+    struct FIELD_VAR* next;
+}field_var;
+
 typedef struct PARAM{
     char type;
     int id;
+    int PTR; // 0 for non-ptr; 1 for ptr; 2 for ptr of ptr
     struct PARAM* next;
 }param;
 
 typedef struct FUNCTION{
-    char return_type;
+    char return_type; // 0 for non-ptr; 1 for ptr; 2 for ptr of ptr
+    int retPTR;
     int id;
     char *name;
     char isStatic;
@@ -34,8 +42,8 @@ typedef struct FUNCTION{
 
 // global var flags
 //   high<<<<<bit                                                           bit>>>>>low
-//    b7     |     b6   |    b5    |     b4   |     b3   |   b2   |   b1   |   b0  |
-//  reserved | reserved | reserved | reserved | reserved | extern | static | const |
+//    b7     |     b6   |    b5    |     b4     |    b3   |   b2   |   b1   |   b0  |
+//  reserved | reserved | reserved | PTR OF PTR | pointer | extern | static | const |
 
 typedef struct TYPE_LIST{
     char type_size;

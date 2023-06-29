@@ -1,6 +1,8 @@
 #ifndef ZCC_FUNCTION_H
 #define ZCC_FUNCTION_H
 
-void compileFunction();
+#include "zcc.h"
+
+void compileFunction(function *func);
 
 #endif

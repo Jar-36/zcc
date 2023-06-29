@@ -1,4 +1,4 @@
-int var;
+int * pvar;
 int main(){
     return 0;
 }

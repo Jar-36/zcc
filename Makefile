@@ -1,4 +1,4 @@
-OBJS=zcc.o ctree.o asm.o global.o
+OBJS=zcc.o ctree.o asm.o global.o function.o i386.o
 
 all:
 	make zcc.out
