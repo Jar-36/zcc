@@ -1,8 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include"../zcc.h"
-#include "util.h"
 type_list * headType = NULL;
 
 int char_index_before_read = 0;
@@ -13,7 +9,7 @@ char *readASen(){
     char_index_before_read = pos->__pos;
     free(pos);
     int bufferCount = 0;
-    int t = 0;
+    int t;
     char *buffer = (char*) malloc(1024*sizeof(char ));
     while (1){
         t = fgetc(srcfp);

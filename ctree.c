@@ -1,7 +1,4 @@
 #include "zcc.h"
-#include "libutil/util.h"
-#include <stdlib.h>
-#include <string.h>
 
 #define PREFIX_CONST 1
 #define PREFIX_STATIC 2

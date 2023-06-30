@@ -1,7 +1,4 @@
 #include "zcc.h"
-#include "libutil/util.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 char asmStatusFlags = 0x0;
 // status flags

@@ -1,6 +1,12 @@
 #ifndef ZCC_SYNTAX_H
 #define ZCC_SYNTAX_H
 
+typedef struct TYPE_LIST{
+    char type_size;
+    int id;
+    struct TYPE_LIST* next;
+}type_list;
+
 char *readASen();
 void addType(char type_size, char *name);
 void initBaseType();

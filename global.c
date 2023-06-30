@@ -1,8 +1,4 @@
 #include "zcc.h"
-#include "asm.h"
-#include "ctree.h"
-#include "libutil/util.h"
-#include "function.h"
 
 global_var *headGlobalVar = NULL;
 function *headFunction = NULL;
