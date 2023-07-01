@@ -4,4 +4,6 @@
 void function_init();
 void function_ret();
 
+void all_ret();
+
 #endif

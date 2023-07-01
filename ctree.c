@@ -15,17 +15,7 @@ void processParam(char *p, function *func) {
     while (1) {
         c = p[index];
 
-        if(c=='*'){
-            if(status==1){
-                pIndex->PTR = 1;
-                if(p[index+1]=='*') {
-                    pIndex->PTR = 2;
-                    index++;
-                }
-            }else loggerf(ERROR, "illegal pointer define");
-        }
-
-        if (c == ')' || c == ' ' || c == ',') {
+        if (c == ')' || c == ' ' || c == ','||c=='*') {
             p[index] = 0;
             size = getTypeSize(p + headIndex);
             if (size != 0) {
@@ -46,6 +36,15 @@ void processParam(char *p, function *func) {
             if (checkLegalToken(p + headIndex) == LEGAL) {
                 if (status == 1) loggerf(ERROR, "illegal define of function parameters name");
                 pIndex->id = hash(p + headIndex);
+            }
+            if(c=='*'){
+                if(status==1){
+                    pIndex->PTR = 1;
+                    if(p[index+1]=='*') {
+                        pIndex->PTR = 2;
+                        index++;
+                    }
+                }else loggerf(ERROR, "illegal pointer define");
             }
             if (c == ')') break;
             if (c == ',') status = 1;
@@ -79,18 +78,8 @@ function *constructGlobalFunction(char *sent) {
     char c;
     while (1) {
         c = sent[index];
-        if(c=='*'){
-            if(isPTR == 1) loggerf(ERROR, "illegal pointer define");
-            if(hasRet==1&&hasName==0){
-                func->retPTR=1;
-                isPTR = 1;
-                if(sent[index+1]=='*') {
-                    func->retPTR=2;
-                    index++;
-                }
-            }else loggerf(ERROR, "illegal pointer define");
-        }
-        if (c == ' ' || c == '{' || c == ';' || c == '(') {
+
+        if (c == ' ' || c == '{' || c == ';' || c == '('||c=='*') {
             sent[index] = 0;
 
 
@@ -119,6 +108,18 @@ function *constructGlobalFunction(char *sent) {
                 if (prefix != 13) loggerf(ERROR, "illegal prefix of function");
                 hasPrefix = 1;
                 func->isStatic = 1;
+            }
+
+            if(c=='*'){
+                if(isPTR >= 1) loggerf(ERROR, "illegal pointer define");
+                if(hasRet==1&&hasName==0){
+                    func->retPTR=1;
+                    isPTR = 1;
+                    if(sent[index+1]=='*') {
+                        func->retPTR=2;
+                        index++;
+                    }
+                }else loggerf(ERROR, "illegal pointer define");
             }
 
 
@@ -169,18 +170,8 @@ global_var *constructGlobalVar(char *sent) {
     char c;
     while (1) {
         c = sent[index];
-        if(c=='*'){
-            if(isPTR == 1) loggerf(ERROR, "illegal pointer define");
-            if(hasType==1&&hasName==0){
-                var->flags&=(0x1<<3);
-                isPTR = 1;
-                if(sent[index+1]=='*') {
-                    var->flags&=(0x1<<4);
-                    index++;
-                }
-            }else loggerf(ERROR, "illegal pointer define");
-        }
-        if (c == ' ' || c == ';') {
+
+        if (c == ' ' || c == ';'||c=='*') {
             sent[index] = 0;
 
             if (checkLegalToken(sent + headIndex) == LEGAL) {
@@ -213,6 +204,18 @@ global_var *constructGlobalVar(char *sent) {
                 if (hasType == 1) loggerf(ERROR, "double define of var type");
                 hasType = 1;
                 var->type_size = size;
+            }
+
+            if(c=='*'){
+                if(isPTR >= 1) loggerf(ERROR, "illegal pointer define");
+                if(hasType==1&&hasName==0){
+                    var->flags&=(0x1<<3);
+                    isPTR = 1;
+                    if(sent[index+1]=='*') {
+                        var->flags&=(0x1<<4);
+                        index++;
+                    }
+                }else loggerf(ERROR, "illegal pointer define");
             }
 
 

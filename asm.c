@@ -8,32 +8,32 @@ char asmStatusFlags = 0x0;
 
 void asmStartDataSegment(){
     if((asmStatusFlags&(0x1<<3))==(0x1<<3)) return;
-    fputs("SECTION .data\n", asmfp);
+    fputs("section .data\n", asmfp);
     asmStatusFlags|=(0x1<<3);
 }
 
 void asmStartCodeSegment(){
     if((asmStatusFlags&(0x1<<2))==(0x1<<2)) return;
-    fputs("SECTION .text\n", asmfp);
+    fputs("section .text\n", asmfp);
     asmStatusFlags|=(0x1<<2);
 }
 
 void asmStartRodataSegment(){
     if((asmStatusFlags&(0x1<<1))==(0x1<<1)) return;
-    fputs("SECTION .rodata\n", asmfp);
+    fputs("section .rodata\n", asmfp);
     asmStatusFlags|=(0x1<<1);
 }
 
 void asmGlobalLabel(char *label){
     char *dst = (char*)malloc(1024);
-    sprintf(dst, "GLOBAL %s\n", label);
+    sprintf(dst, "global %s\n", label);
     fputs(dst, asmfp);
     free(dst);
 }
 
 void asmExternLabel(char *label){
     char *dst = (char*)malloc(1024);
-    sprintf(dst, "EXTERN %s\n", label);
+    sprintf(dst, "extern %s\n", label);
     fputs(dst, asmfp);
     free(dst);
 }

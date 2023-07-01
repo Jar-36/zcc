@@ -7,3 +7,7 @@ void function_init(){
 void function_ret(){
     fputs("leave\nret\n", asmfp);
 }
+
+void all_ret(){
+    fputs("extern exit\ncall exit", asmfp);
+}

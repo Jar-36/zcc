@@ -3,6 +3,8 @@
 
 #include "zcc.h"
 
+extern int currESP;
+
 typedef struct PARAM{
     char type;
     int id;

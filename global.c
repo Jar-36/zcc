@@ -16,8 +16,6 @@ void readGlobalFunction(){
         }
         func = constructGlobalFunction(buf);
         if(func==NULL) continue;
-        if(func->isExternal==1) asmExternLabel(func->name);
-        if(func->isStatic==0) asmGlobalLabel(func->name);
         compileFunction(func);
         if(headFunction==NULL){
             headFunction = func;
