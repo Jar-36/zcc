@@ -5,7 +5,7 @@ void SYS_PRINT(char *string, int len);
 int PRINT(char *fmt, ...)
 {
     int *args = (int*)&fmt;
-    char buf[BUFLEN];
+    char *buf = (char*)calloc(1024, 1);
     char *p1 = fmt, *p2 = buf + BUFLEN;
     int len = -1, argc = 1;
 
